@@ -1,5 +1,6 @@
 import Image from "next/image";
 import BottomNav from "../components/BottomNav";
+import PromoSlider from "../components/PromoSlider";
 
 const products = [
   {
@@ -46,13 +47,9 @@ export default function HomePage() {
               </p>
             </div>
 
-            <Image
-              src="/demo/banner-food.png"
-              alt="food banner"
-              width={220}
-              height={160}
-              className="absolute bottom-0 right-0 h-full w-[50%] object-cover"
-            />
+            <div className="mt-5">
+              <PromoSlider />
+            </div>
           </div>
         </div>
 
@@ -81,7 +78,7 @@ export default function HomePage() {
           </div>
 
           <a
-            href="/products"
+            href="/store"
             className="mt-3 flex overflow-hidden rounded-3xl border border-gray-100 bg-white shadow-sm"
           >
             <Image
