@@ -1,5 +1,5 @@
 import Image from "next/image";
-
+import Link from "next/link";
 const products = [
   { name: "ข้าวกะเพราหมูสับ", price: 55, image: "/demo/krapao.jpg", category: "อาหาร" },
   { name: "ข้าวไก่ทอด", price: 50, image: "/demo/fried-chicken.jpg", category: "อาหาร" },
@@ -43,10 +43,11 @@ export default function ProductsPage() {
           </div>
 
           <div className="grid grid-cols-2 gap-4">
-            {products.map((product) => (
-              <div
+            {products.map((product, index) => (
+              <Link
+                href={`/products/${index + 1}`}
                 key={product.name}
-                className="rounded-3xl border border-gray-100 bg-white p-3 shadow-sm"
+                className="rounded-3xl border border-gray-100 bg-white p-3 shadow-sm block"
               >
                 <Image
                   src={product.image}
@@ -70,7 +71,7 @@ export default function ProductsPage() {
                     +
                   </button>
                 </div>
-              </div>
+              </Link>
             ))}
           </div>
         </div>
