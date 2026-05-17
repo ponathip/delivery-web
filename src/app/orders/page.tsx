@@ -21,7 +21,7 @@ const orders = [
 export default function OrdersPage() {
   return (
     <main className="min-h-screen bg-orange-50">
-      <section className="mx-auto min-h-screen max-w-md bg-white pb-28 shadow-xl">
+      <section className="mx-auto min-h-screen max-w-md bg-white pb-40 shadow-xl">
         <div className="rounded-b-[32px] bg-orange-500 px-5 pb-6 pt-6 text-white">
           <p className="text-sm opacity-90">My Orders</p>
           <h1 className="text-2xl font-bold">ออเดอร์ของฉัน</h1>

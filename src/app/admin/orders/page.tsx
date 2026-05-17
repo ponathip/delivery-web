@@ -1,3 +1,8 @@
+"use client";
+
+import { useEffect, useState } from "react";
+import AdminBottomNav from "../../../components/AdminBottomNav";
+
 const orders = [
   {
     code: "#ORD-000128",
@@ -26,9 +31,18 @@ const orders = [
 ];
 
 export default function AdminOrdersPage() {
+  const [showPopup, setShowPopup] = useState(false);
+
+  useEffect(() => {
+    const timer = setTimeout(() => {
+      setShowPopup(true);
+    }, 3000);
+
+    return () => clearTimeout(timer);
+  }, []);
   return (
     <main className="min-h-screen bg-gray-100">
-      <section className="mx-auto max-w-md min-h-screen bg-white shadow-xl pb-10">
+      <section className="mx-auto min-h-screen max-w-md bg-white pb-32 shadow-xl">
         <div className="bg-orange-500 px-5 pt-6 pb-6 text-white rounded-b-[32px]">
           <p className="text-sm opacity-90">Store Admin</p>
           <h1 className="text-2xl font-bold">ออเดอร์ร้าน</h1>
@@ -102,6 +116,41 @@ export default function AdminOrdersPage() {
             ))}
           </div>
         </div>
+
+        {showPopup && (
+          <div className="fixed left-1/2 top-5 z-50 w-full max-w-md -translate-x-1/2 px-5">
+            <div className="animate-bounce rounded-3xl bg-orange-500 p-5 text-white shadow-2xl">
+              <div className="flex items-start justify-between">
+                <div>
+                  <p className="text-sm opacity-90">
+                    🔔 ออเดอร์ใหม่
+                  </p>
+
+                  <h2 className="mt-1 text-xl font-bold">
+                    #ORD-000130
+                  </h2>
+
+                  <p className="mt-1 text-sm opacity-90">
+                    ลูกค้าใหม่ • ฿220
+                  </p>
+                </div>
+
+                <button
+                  onClick={() => setShowPopup(false)}
+                  className="text-xl"
+                >
+                  ✕
+                </button>
+              </div>
+
+              <button className="mt-4 w-full rounded-2xl bg-white py-3 font-bold text-orange-600">
+                รับออเดอร์
+              </button>
+            </div>
+          </div>
+        )}
+
+        <AdminBottomNav />
       </section>
     </main>
   );

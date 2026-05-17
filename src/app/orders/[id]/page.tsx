@@ -1,29 +1,51 @@
+"use client";
+
+import { useEffect, useState } from "react";
 import Link from "next/link";
 
-const steps = [
-  {
-    title: "ร้านรับออเดอร์แล้ว",
-    desc: "ร้านกำลังตรวจสอบรายการ",
-    active: true,
-  },
-  {
-    title: "กำลังเตรียมอาหาร",
-    desc: "ร้านกำลังทำอาหาร",
-    active: true,
-  },
-  {
-    title: "กำลังจัดส่ง",
-    desc: "ไรเดอร์กำลังเดินทาง",
-    active: false,
-  },
-  {
-    title: "จัดส่งสำเร็จ",
-    desc: "ลูกค้าได้รับสินค้าแล้ว",
-    active: false,
-  },
+// const steps = [
+//   {
+//     title: "ร้านรับออเดอร์แล้ว",
+//     desc: "ร้านกำลังตรวจสอบรายการ",
+//     active: true,
+//   },
+//   {
+//     title: "กำลังเตรียมอาหาร",
+//     desc: "ร้านกำลังทำอาหาร",
+//     active: true,
+//   },
+//   {
+//     title: "กำลังจัดส่ง",
+//     desc: "ไรเดอร์กำลังเดินทาง",
+//     active: false,
+//   },
+//   {
+//     title: "จัดส่งสำเร็จ",
+//     desc: "ลูกค้าได้รับสินค้าแล้ว",
+//     active: false,
+//   },
+// ];
+const statusSteps = [
+  "ร้านรับออเดอร์แล้ว",
+  "กำลังเตรียมอาหาร",
+  "กำลังจัดส่ง",
+  "จัดส่งสำเร็จ",
 ];
 
 export default function OrderTrackingPage() {
+  const [currentStep, setCurrentStep] = useState(1);
+
+  useEffect(() => {
+    const interval = setInterval(() => {
+      setCurrentStep((prev) => {
+        if (prev >= 3) return prev;
+        return prev + 1;
+      });
+    }, 4000);
+
+    return () => clearInterval(interval);
+  }, []);
+
   return (
     <main className="min-h-screen bg-orange-50">
       <section className="mx-auto min-h-screen max-w-md bg-white pb-32 shadow-xl">
@@ -51,23 +73,22 @@ export default function OrderTrackingPage() {
           </div>
 
           <div className="mt-8 space-y-6">
-            {steps.map((step, index) => (
-              <div key={step.title} className="flex gap-4">
+          {statusSteps.map((title, index) => {
+            const active = index <= currentStep;
+
+            return (
+              <div key={title} className="flex gap-4">
                 <div className="flex flex-col items-center">
                   <div
                     className={`h-5 w-5 rounded-full ${
-                      step.active
-                        ? "bg-orange-500"
-                        : "bg-gray-300"
+                      active ? "bg-orange-500" : "bg-gray-300"
                     }`}
                   />
 
-                  {index !== steps.length - 1 && (
+                  {index !== statusSteps.length - 1 && (
                     <div
                       className={`mt-1 h-16 w-1 rounded-full ${
-                        step.active
-                          ? "bg-orange-200"
-                          : "bg-gray-200"
+                        active ? "bg-orange-200" : "bg-gray-200"
                       }`}
                     />
                   )}
@@ -76,27 +97,24 @@ export default function OrderTrackingPage() {
                 <div className="-mt-1">
                   <h3
                     className={`font-bold ${
-                      step.active
-                        ? "text-gray-900"
-                        : "text-gray-400"
+                      active ? "text-gray-900" : "text-gray-400"
                     }`}
                   >
-                    {step.title}
+                    {title}
                   </h3>
 
                   <p
                     className={`mt-1 text-sm ${
-                      step.active
-                        ? "text-gray-500"
-                        : "text-gray-400"
+                      active ? "text-gray-500" : "text-gray-400"
                     }`}
                   >
-                    {step.desc}
+                    กำลังอัปเดตสถานะออเดอร์
                   </p>
                 </div>
               </div>
-            ))}
-          </div>
+            );
+          })}
+        </div>
 
           <div className="mt-10 rounded-3xl border border-gray-100 bg-white p-5 shadow-sm">
             <h2 className="font-bold text-gray-900">

@@ -3,19 +3,52 @@ const navItems = [
   { href: "/admin/orders", label: "ออเดอร์", icon: "📋" },
   { href: "/admin/products", label: "สินค้า", icon: "🍱" },
   { href: "/admin/reports", label: "รายงาน", icon: "📈" },
+  { href: "/admin/settings", label: "ตั้งค่า", icon: "⚙️" },
 ];
 
 export default function AdminBottomNav() {
   return (
-    <div className="fixed bottom-0 left-1/2 z-50 w-full max-w-md -translate-x-1/2 border-t bg-white px-3 py-2">
-      <div className="grid grid-cols-4">
-        {navItems.map((item) => (
-          <a key={item.href} href={item.href} className="flex flex-col items-center justify-center rounded-2xl py-2 text-xs font-bold text-gray-500">
-            <span className="text-xl">{item.icon}</span>
-            <span className="mt-1">{item.label}</span>
-          </a>
-        ))}
-      </div>
-    </div>
+    <nav
+      style={{
+        position: "fixed",
+        left: "50%",
+        bottom: 0,
+        transform: "translateX(-50%)",
+        width: "100%",
+        maxWidth: "28rem",
+        height: "72px",
+        background: "#fff",
+        borderTop: "1px solid #eee",
+        zIndex: 9999,
+        display: "flex",
+        alignItems: "center",
+        justifyContent: "space-around",
+      }}
+    >
+      {navItems.map((item) => (
+        <a
+          key={item.href}
+          href={item.href}
+          style={{
+            width: "20%",
+            height: "56px",
+            display: "flex",
+            flexDirection: "column",
+            alignItems: "center",
+            justifyContent: "center",
+            textDecoration: "none",
+            color: "#6b7280",
+            fontSize: "11px",
+            fontWeight: 700,
+            lineHeight: 1.1,
+          }}
+        >
+          <span style={{ fontSize: "20px", marginBottom: "4px" }}>
+            {item.icon}
+          </span>
+          <span>{item.label}</span>
+        </a>
+      ))}
+    </nav>
   );
 }
