@@ -1,6 +1,6 @@
 import Image from "next/image";
 import Link from "next/link";
-import BottomNav from "../../components/BottomNav";
+import CustomerBottomNav from "../../components/CustomerBottomNav";
 
 const products = [
   {
@@ -132,7 +132,7 @@ export default function StorePage() {
             </a>
         </div>
 
-        <BottomNav />
+        <CustomerBottomNav />
       </section>
     </main>
   );

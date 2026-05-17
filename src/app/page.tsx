@@ -1,5 +1,5 @@
 import Image from "next/image";
-import BottomNav from "../components/BottomNav";
+import CustomerBottomNav from "../components/CustomerBottomNav";
 import PromoSlider from "../components/PromoSlider";
 
 const products = [
@@ -131,7 +131,7 @@ export default function HomePage() {
           </div>
         </div>
 
-        <BottomNav />
+        <CustomerBottomNav />
       </section>
     </main>
   );

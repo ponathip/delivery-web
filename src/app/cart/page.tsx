@@ -81,7 +81,7 @@ export default function CartPage() {
             href="/checkout"
             className="block w-full rounded-2xl bg-orange-500 py-4 text-center font-bold text-white shadow-lg"
           >
-            ไปหน้าชำระเงิน
+            ชำระเงิน
           </a>
         </div>
       </section>
